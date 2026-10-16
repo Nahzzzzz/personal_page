@@ -9,11 +9,11 @@
 
 CREATE TABLE IF NOT EXISTS content (
   locale     TEXT PRIMARY KEY, -- 'zh' | 'en'
-  data       TEXT NOT NULL,    -- 合并后的完整内容（JSON 字符串）
+  data       TEXT NOT NULL,    -- 历次补丁累积后的稀疏内容，只含改过的字段（JSON 字符串）
   updated_at TEXT NOT NULL
 );
 
--- 每次写入（含「恢复默认」）前留一份快照，后台可以回滚
+-- 每次写入都留一份快照：保存记的是本次写入后的内容，恢复默认记的是被删掉的那份
 CREATE TABLE IF NOT EXISTS revisions (
   id         INTEGER PRIMARY KEY AUTOINCREMENT,
   locale     TEXT NOT NULL,

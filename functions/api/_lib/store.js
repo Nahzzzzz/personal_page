@@ -3,11 +3,12 @@
    ============================================================
    表结构见项目根目录的 schema.sql。
 
-   content   ：每种语言一行，存合并后的完整内容（JSON 字符串）
-   revisions ：每次写入前留一份快照，后台可以回滚
+   content   ：每种语言一行，存历次补丁累积后的稀疏对象（JSON 字符串）
+   revisions ：每次写入都留一份快照，后台可以回滚
 
-   注意 content 存的是「整份内容」而不是补丁：读取时不用做合并，
-   回滚和导出也直接就是它。
+   注意 content 存的是「改过的字段」，不是整份页面内容，也不是补丁日志：
+   读取时不需要在服务端做合并（补丁只在写入时并进这一行，页面再把它叠到
+   内置默认值上），回滚、导出、清理历史都直接拿这一行的值用。
    ============================================================ */
 
 import { HttpError } from "./http.js";
@@ -66,7 +67,7 @@ export async function readLocale(env, locale) {
   return parsed && !parsed.broken ? parsed.data : null;
 }
 
-/* 写入并顺手留一份快照；batch 在 D1 里是一个事务 */
+/* 写入并留一份快照（记的是这次写入后的内容）；batch 在 D1 里是一个事务 */
 export async function writeLocale(env, locale, data) {
   const db = requireDb(env);
   const now = new Date().toISOString();

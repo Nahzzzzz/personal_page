@@ -50,8 +50,14 @@
 ├── schema.sql                      D1 表结构
 ├── wrangler.toml                   Pages + D1 配置
 ├── .dev.vars.example               本地环境变量模板
+├── AGENTS.md                       仓库约定、改动落点、字段速查、验证顺序
+├── docs/
+│   ├── PRD.md                      需求：目标、用户故事、功能需求、验收清单
+│   └── TECH_DESIGN.md              设计：选型、模块职责、数据模型、接口契约
 └── package.json
 ```
+
+想改代码或者想弄清楚「为什么这么设计」，看 `AGENTS.md`（约定与操作手册）和 `docs/`（需求 + 设计）。
 
 零构建、零依赖、零外部请求。站点只用系统字体，没有 CDN，也没有打包步骤。
 
@@ -180,8 +186,9 @@ npm run deploy
 
 完成后访问 `https://personal-page.pages.dev`（域名取 `wrangler.toml` 里的 `name`）。
 
-两个容易踩的坑：
+几个容易踩的坑：
 
+- **Git 集成里那个 Deploy command 只能是 `npx wrangler pages deploy`，或者留空。** 填 `wrangler deploy` 是错的——那是 Workers 的命令，在这个项目上会报 `Missing entry-point to Worker script or to assets directory`，也不会传上去任何文件（留空时构建系统会自己把 `public/` 传上去）。不要为了绕过这个错误把配置改成 Workers 格式（`main` / `assets`）：`functions/` 只有 Pages 认，改了等于要重写整个 `/api/*`。
 - **`wrangler.toml` 是项目配置的唯一来源。** 用它部署过之后，控制台里对应的字段（D1 绑定这些）会变成只读，想改配置就改文件再部署一次。如果这个 Pages 项目你之前是在控制台里手工建的，先跑 `npx wrangler pages download config personal-page` 把现有配置拉下来看一眼，别让两边打架。
 - **上面的命令是生产部署。** 以后如果接了 Git 集成，预览部署的绑定要在 `wrangler.toml` 里用 `[env.preview]` 单独写一份，否则预览网址上的后台会报「D1 未绑定」。
 
