@@ -1,0 +1,42 @@
+# ============================================================
+# Cloudflare Pages 配置
+# ============================================================
+# 这个文件同时给本地开发和线上部署用：
+#   本地：npx wrangler pages dev
+#   线上：npx wrangler pages deploy
+#
+# 部署步骤见 README 的「部署到 Cloudflare Pages」一节。
+#
+# 注意：用这个文件部署过之后，它就是项目配置的唯一来源，
+# 控制台里对应字段（D1 绑定等）会变成只读——要改就改这个文件再重新部署。
+# 密钥不写在这里，见文件末尾。
+# ============================================================
+
+# 给编辑器用的配置项补全（npm install 之后才会有这个文件）
+"$schema" = "./node_modules/wrangler/config-schema.json"
+
+# Pages 项目名，决定默认域名 https://<name>.pages.dev
+# 改成别的名字时，package.json 里那两条 secret:* 脚本的 --project-name 也要一起改
+name = "personal-page"
+compatibility_date = "2026-10-01"
+
+# 静态文件目录（Cloudflare Pages 的构建输出目录，只有这个目录会被上传）
+pages_build_output_dir = "public"
+
+# ---- D1：存后台改过的内容 ----
+# 部署前必须做两件事，否则后台会报「D1 未绑定」：
+#   1. npx wrangler d1 create site-content
+#   2. 把命令输出的 database_id 填到下面（现在这串全 0 只是占位符）
+[[d1_databases]]
+binding = "DB"
+database_name = "site-content"
+database_id = "00000000-0000-0000-0000-000000000000"
+
+# ---- 环境变量 ----
+# ADMIN_PASSWORD / SESSION_SECRET 属于密钥，不要写在这个文件里。
+#   线上：npx wrangler pages secret put ADMIN_PASSWORD --project-name personal-page
+#         或控制台 → Workers & Pages → 项目 → Settings → Variables and Secrets
+#   本地：写在 .dev.vars（已被 .gitignore 忽略，模板见 .dev.vars.example）
+#
+# 只改密钥、不改代码时，改完再跑一次 npx wrangler pages deploy 最稳妥
+# （SESSION_SECRET 一变，旧的后台登录 Cookie 就验不过了，需要重新登录）。

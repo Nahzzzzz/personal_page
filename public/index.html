@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0a0b0f" />
+
+  <title data-i18n="meta.title">张伟 · 全栈工程师</title>
+  <meta
+    name="description"
+    data-i18n-content="meta.description"
+    content="张伟的个人主页：全栈工程师，专注 Web 平台与开发者工具。项目作品、技术经历与联系方式。"
+  />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" data-i18n-content="meta.title" content="张伟 · 全栈工程师" />
+  <meta
+    property="og:description"
+    data-i18n-content="meta.description"
+    content="张伟的个人主页：全栈工程师，专注 Web 平台与开发者工具。项目作品、技术经历与联系方式。"
+  />
+  <meta property="og:locale" content="zh_CN" />
+  <!-- og:url 的值在页面加载后由 assets/js/content.js 用 site.url 补上 -->
+  <meta property="og:url" content="https://example.com" />
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/css/tokens.css" />
+  <link rel="stylesheet" href="assets/css/base.css" />
+  <link rel="stylesheet" href="assets/css/sections.css" />
+
+  <!-- 加 .js 类，只有脚本可用时才启用入场动画，避免脚本被禁用后内容不可见 -->
+  <script src="assets/js/boot.js"></script>
+
+  <!-- 结构化数据：这里是不依赖 JS 的兜底，页面加载后会用后台内容刷新 -->
+  <script type="application/ld+json" id="structured-data">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "张伟",
+      "jobTitle": "全栈工程师",
+      "email": "mailto:hello@example.com",
+      "url": "https://example.com",
+      "sameAs": [
+        "https://github.com/yourname",
+        "https://www.linkedin.com/in/yourname"
+      ]
+    }
+  </script>
+</head>
+<body id="top">
+  <a class="skip-link" href="#main" data-i18n="a11y.skip">跳到主要内容</a>
+
+  <header class="nav" id="nav">
+    <div class="nav__inner container">
+      <a class="nav__brand" href="#top">
+        <span class="nav__mark" aria-hidden="true">ZW</span>
+        <span class="nav__brand-text" data-i18n="nav.brand">张伟</span>
+      </a>
+
+      <nav class="nav__menu" id="nav-menu" data-i18n-aria-label="nav.label" aria-label="主导航">
+        <ul class="nav__list">
+          <li><a class="nav__link" href="#about" data-i18n="nav.about">关于</a></li>
+          <li><a class="nav__link" href="#skills" data-i18n="nav.skills">技能</a></li>
+          <li><a class="nav__link" href="#projects" data-i18n="nav.projects">项目</a></li>
+          <li><a class="nav__link" href="#experience" data-i18n="nav.experience">经历</a></li>
+          <li><a class="nav__link" href="#contact" data-i18n="nav.contact">联系</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav__actions">
+        <button
+          class="lang-toggle"
+          id="lang-toggle"
+          type="button"
+          data-i18n-aria-label="nav.langSwitch"
+          aria-label="切换到 English"
+        >
+          <svg class="icon icon--14" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path
+              fill="currentColor"
+              d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm6.93 6h-2.95a15.7 15.7 0 0 0-1.35-3.44A8.03 8.03 0 0 1 18.93 8ZM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82A13.9 13.9 0 0 1 12 4.04ZM4.26 14a7.96 7.96 0 0 1 0-4h3.38a17.6 17.6 0 0 0 0 4H4.26Zm.81 2h2.95c.32 1.25.78 2.42 1.35 3.44A8.03 8.03 0 0 1 5.07 16Zm2.95-8H5.07a8.03 8.03 0 0 1 4.3-3.44A15.7 15.7 0 0 0 8.02 8ZM12 19.96A13.9 13.9 0 0 1 10.09 16h3.82A13.9 13.9 0 0 1 12 19.96ZM14.34 14H9.66a15.6 15.6 0 0 1 0-4h4.68a15.6 15.6 0 0 1 0 4Zm.29 5.44c.57-1.02 1.03-2.19 1.35-3.44h2.95a8.03 8.03 0 0 1-4.3 3.44ZM16.36 14a17.6 17.6 0 0 0 0-4h3.38a7.96 7.96 0 0 1 0 4h-3.38Z"
+            />
+          </svg>
+          <span id="lang-toggle-label" data-i18n="nav.langSwitch">English</span>
+        </button>
+
+        <button
+          class="nav__burger"
+          id="nav-burger"
+          type="button"
+          aria-expanded="false"
+          aria-controls="nav-menu"
+        >
+          <span class="sr-only" data-i18n="nav.menu">打开菜单</span>
+          <span class="nav__burger-bars" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ============ Hero ============ -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero__grid">
+        <div class="hero__content">
+          <p class="hero__status">
+            <span class="dot" aria-hidden="true"></span>
+            <span data-i18n="hero.status">开放全职与远程机会</span>
+          </p>
+
+          <h1 class="hero__title" id="hero-title">
+            <span class="hero__name" data-i18n="hero.name">张伟</span>
+            <span class="hero__role" data-i18n="hero.role">全栈工程师</span>
+          </h1>
+
+          <p class="hero__lead" data-i18n="hero.lead">
+            五年 Web 开发经验，主要做前端架构与开发者工具。喜欢把复杂的系统拆成能解释清楚的小块，也喜欢写文档和自动化脚本来减少重复劳动。
+          </p>
+
+          <div class="hero__cta">
+            <a class="btn btn--primary" href="#projects">
+              <span data-i18n="hero.ctaProjects">查看项目</span>
+              <svg class="icon icon--14" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M5 12h14M13 6l6 6-6 6"
+                />
+              </svg>
+            </a>
+
+            <a class="btn btn--ghost" href="resume-zh.pdf" download data-i18n-href="links.resume">
+              <svg class="icon icon--14" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 3v12m0 0 4-4m-4 4-4-4M4 19h16"
+                />
+              </svg>
+              <span data-i18n="hero.ctaResume">下载简历</span>
+            </a>
+          </div>
+
+          <ul class="social" data-i18n-aria-label="links.socialLabel" aria-label="社交链接">
+            <li>
+              <a
+                class="social__link"
+                href="https://github.com/yourname"
+                data-i18n-href="links.github"
+                data-i18n-aria-label="links.githubLabel"
+                data-i18n-title="links.githubLabel"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path
+                    fill="currentColor"
+                    d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3Z"
+                  />
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a
+                class="social__link"
+                href="https://www.linkedin.com/in/yourname"
+                data-i18n-href="links.linkedin"
+                data-i18n-aria-label="links.linkedinLabel"
+                data-i18n-title="links.linkedinLabel"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path
+                    fill="currentColor"
+                    d="M20.4 20.5h-3.6v-5.6c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9v5.7H9.4V9h3.4v1.6h.1c.5-.9 1.6-1.9 3.4-1.9 3.6 0 4.3 2.4 4.3 5.5v6.3ZM5.3 7.4a2.1 2.1 0 1 1 0-4.1 2.1 2.1 0 0 1 0 4.1Zm1.8 13.1H3.5V9h3.6v11.5ZM22.2 0H1.8C.8 0 0 .8 0 1.7v20.6c0 1 .8 1.7 1.8 1.7h20.4c1 0 1.8-.8 1.8-1.7V1.7c0-1-.8-1.7-1.8-1.7Z"
+                  />
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a
+                class="social__link"
+                href="https://x.com/yourname"
+                data-i18n-href="links.x"
+                data-i18n-aria-label="links.xLabel"
+                data-i18n-title="links.xLabel"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path
+                    fill="currentColor"
+                    d="M18.2 2.3h3.3l-7.2 8.3 8.5 11.2h-6.7l-5.2-6.8-6 6.8H1.7l7.7-8.8L1.3 2.3h6.8l4.7 6.2 5.4-6.2Zm-1.2 17.5h1.9L7.1 4.1H5.1l11.9 15.7Z"
+                  />
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a
+                class="social__link"
+                href="mailto:hello@example.com"
+                data-i18n-href="links.email"
+                data-i18n-aria-label="links.emailLabel"
+                data-i18n-title="links.emailLabel"
+              >
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path
+                    fill="currentColor"
+                    d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5-8-5V6l8 5 8-5v2Z"
+                  />
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="hero__aside">
+          <figure class="terminal" data-i18n-aria-label="terminal.label" aria-label="终端样式的自我介绍">
+            <figcaption class="terminal__bar">
+              <span class="terminal__dot" aria-hidden="true"></span>
+              <span class="terminal__dot" aria-hidden="true"></span>
+              <span class="terminal__dot" aria-hidden="true"></span>
+              <span class="terminal__title">~/about</span>
+            </figcaption>
+
+            <div class="terminal__body">
+              <p class="terminal__line">
+                <span class="terminal__prompt" aria-hidden="true">$</span>
+                <span class="terminal__cmd">whoami</span>
+              </p>
+              <p class="terminal__line terminal__out" data-i18n="terminal.whoami">zhang-wei · 全栈工程师</p>
+
+              <p class="terminal__line">
+                <span class="terminal__prompt" aria-hidden="true">$</span>
+                <span class="terminal__cmd">cat focus.txt</span>
+              </p>
+              <p class="terminal__line terminal__out" data-i18n="terminal.focus">Web 平台 · 开发者工具 · 性能优化</p>
+
+              <p class="terminal__line">
+                <span class="terminal__prompt" aria-hidden="true">$</span>
+                <span class="terminal__cmd">ls ~/now</span>
+              </p>
+              <p class="terminal__line terminal__out" data-i18n="terminal.now">开源项目 / 副业产品 / 技术写作</p>
+
+              <p class="terminal__line">
+                <span class="terminal__prompt" aria-hidden="true">$</span>
+                <span class="terminal__cursor" aria-hidden="true"></span>
+              </p>
+            </div>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ About ============ -->
+    <section class="section" id="about" aria-labelledby="about-title">
+      <div class="container">
+        <header class="section__head reveal">
+          <p class="section__eyebrow" data-i18n="about.eyebrow">01 / 关于</p>
+          <h2 class="section__title" id="about-title" data-i18n="about.title">关于我</h2>
+          <p class="section__lead" data-i18n="about.lead">三句话说明我是谁、在做什么、关心什么问题。</p>
+        </header>
+
+        <div class="about__grid reveal">
+          <!-- 段落与事实清单由 assets/js/render.js 根据内容数据生成 -->
+          <div class="prose" data-list="about.paragraphs"></div>
+          <dl class="facts" data-list="about.facts"></dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Skills ============ -->
+    <section class="section" id="skills" aria-labelledby="skills-title">
+      <div class="container">
+        <header class="section__head reveal">
+          <p class="section__eyebrow" data-i18n="skills.eyebrow">02 / 技能</p>
+          <h2 class="section__title" id="skills-title" data-i18n="skills.title">技能</h2>
+          <p class="section__lead" data-i18n="skills.lead">按使用频率和熟悉程度分组，越靠前的越常用。</p>
+        </header>
+
+        <div class="skills__grid reveal" data-list="skills.groups"></div>
+      </div>
+    </section>
+
+    <!-- ============ Projects ============ -->
+    <section class="section" id="projects" aria-labelledby="projects-title">
+      <div class="container">
+        <header class="section__head reveal">
+          <p class="section__eyebrow" data-i18n="projects.eyebrow">03 / 项目</p>
+          <h2 class="section__title" id="projects-title" data-i18n="projects.title">项目</h2>
+          <p class="section__lead" data-i18n="projects.lead">挑了几个能说明我在解决什么问题、怎么解决的例子。</p>
+        </header>
+
+        <div class="projects__grid reveal" data-list="projects.items"></div>
+      </div>
+    </section>
+
+    <!-- ============ Experience ============ -->
+    <section class="section" id="experience" aria-labelledby="experience-title">
+      <div class="container">
+        <header class="section__head reveal">
+          <p class="section__eyebrow" data-i18n="experience.eyebrow">04 / 经历</p>
+          <h2 class="section__title" id="experience-title" data-i18n="experience.title">工作经历</h2>
+          <p class="section__lead" data-i18n="experience.lead">只写做出结果的部分，职责描述就省略了。</p>
+        </header>
+
+        <ol class="timeline reveal" data-list="experience.items"></ol>
+      </div>
+    </section>
+
+    <!-- ============ Contact ============ -->
+    <section class="section" id="contact" aria-labelledby="contact-title">
+      <div class="container">
+        <div class="contact reveal">
+          <p class="section__eyebrow" data-i18n="contact.eyebrow">05 / 联系</p>
+          <h2 class="contact__title" id="contact-title" data-i18n="contact.title">聊聊？</h2>
+          <p class="contact__lead" data-i18n="contact.lead">
+            不管是工作机会、技术合作，还是想讨论某个具体的工程问题，都欢迎直接发邮件给我。我一般在两个工作日内回复。
+          </p>
+
+          <a class="btn btn--primary btn--lg" href="mailto:hello@example.com" data-i18n-href="links.email">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path
+                fill="currentColor"
+                d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5-8-5V6l8 5 8-5v2Z"
+              />
+            </svg>
+            <span data-i18n="contact.email">hello@example.com</span>
+          </a>
+
+          <ul
+            class="social social--center"
+            data-i18n-aria-label="links.socialLabel"
+            aria-label="社交链接"
+          >
+            <li>
+              <a
+                class="social__link"
+                href="https://github.com/yourname"
+                data-i18n-href="links.github"
+                data-i18n-aria-label="links.githubLabel"
+                data-i18n-title="links.githubLabel"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path
+                    fill="currentColor"
+                    d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3Z"
+                  />
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a
+                class="social__link"
+                href="https://www.linkedin.com/in/yourname"
+                data-i18n-href="links.linkedin"
+                data-i18n-aria-label="links.linkedinLabel"
+                data-i18n-title="links.linkedinLabel"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path
+                    fill="currentColor"
+                    d="M20.4 20.5h-3.6v-5.6c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9v5.7H9.4V9h3.4v1.6h.1c.5-.9 1.6-1.9 3.4-1.9 3.6 0 4.3 2.4 4.3 5.5v6.3ZM5.3 7.4a2.1 2.1 0 1 1 0-4.1 2.1 2.1 0 0 1 0 4.1Zm1.8 13.1H3.5V9h3.6v11.5ZM22.2 0H1.8C.8 0 0 .8 0 1.7v20.6c0 1 .8 1.7 1.8 1.7h20.4c1 0 1.8-.8 1.8-1.7V1.7c0-1-.8-1.7-1.8-1.7Z"
+                  />
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a
+                class="social__link"
+                href="https://x.com/yourname"
+                data-i18n-href="links.x"
+                data-i18n-aria-label="links.xLabel"
+                data-i18n-title="links.xLabel"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path
+                    fill="currentColor"
+                    d="M18.2 2.3h3.3l-7.2 8.3 8.5 11.2h-6.7l-5.2-6.8-6 6.8H1.7l7.7-8.8L1.3 2.3h6.8l4.7 6.2 5.4-6.2Zm-1.2 17.5h1.9L7.1 4.1H5.1l11.9 15.7Z"
+                  />
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a
+                class="social__link"
+                href="mailto:hello@example.com"
+                data-i18n-href="links.email"
+                data-i18n-aria-label="links.emailLabel"
+                data-i18n-title="links.emailLabel"
+              >
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path
+                    fill="currentColor"
+                    d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5-8-5V6l8 5 8-5v2Z"
+                  />
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p class="footer__meta">
+        © <span id="year">2026</span>
+        <span data-i18n="footer.name">张伟</span>
+        <span aria-hidden="true">·</span>
+        <span data-i18n="footer.note">用 HTML、CSS 和原生 JavaScript 构建</span>
+      </p>
+      <a class="footer__top" href="#top" data-i18n="footer.top">回到顶部 ↑</a>
+    </div>
+  </footer>
+
+  <!-- 加载顺序有依赖：先工具函数，再内容数据，再列表渲染器，再内容加载与本地化，最后页面交互 -->
+  <script src="assets/js/util.js" defer></script>
+  <script src="assets/js/content-zh.js" defer></script>
+  <script src="assets/js/content-en.js" defer></script>
+  <script src="assets/js/render.js" defer></script>
+  <script src="assets/js/content.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>

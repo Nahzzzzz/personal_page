@@ -1,0 +1,9 @@
+# 本地开发用的环境变量，复制成 .dev.vars 后按需修改。
+# .dev.vars 已被 .gitignore 忽略，不会进仓库。
+# 线上的值请在 Cloudflare 控制台的项目设置里配置，不要写进 wrangler.toml。
+
+# 后台登录密码
+ADMIN_PASSWORD=dev-password-change-me
+
+# 会话签名密钥，随便一串长随机字符串即可（改了所有人需要重新登录）
+SESSION_SECRET=dev-session-secret-change-me
