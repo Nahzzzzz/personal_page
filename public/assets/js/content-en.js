@@ -4,21 +4,20 @@
    Same structure as content-zh.js — keep every key in sync, or the
    page will fall back to the Chinese value when switching language.
 
-   This file is the first-paint content and the offline fallback.
-   Content saved from /admin lives in D1 and overrides these fields.
+   This file is the only source of copy for the English site.
    ============================================================ */
 
 window.SITE_CONTENT = window.SITE_CONTENT || {};
 
 window.SITE_CONTENT.en = {
   meta: {
-    title: "Zhang Wei · Full-Stack Engineer",
+    title: "Zhang Zihang · Full-Stack Engineer",
     description:
-      "Personal site of Zhang Wei, a full-stack engineer focused on web platforms and developer tooling. Projects, experience, and contact.",
+      "Personal site of Zhang Zihang, a full-stack engineer focused on web platforms and developer tooling. Projects, experience, and contact.",
   },
 
   site: {
-    url: "https://example.com",
+    url: "https://personal-page-2xn.pages.dev",
   },
 
   a11y: {
@@ -26,7 +25,7 @@ window.SITE_CONTENT.en = {
   },
 
   nav: {
-    brand: "Zhang Wei",
+    brand: "Zhang Zihang",
     label: "Main navigation",
     about: "About",
     skills: "Skills",
@@ -38,11 +37,13 @@ window.SITE_CONTENT.en = {
   },
 
   links: {
-    resume: "resume-en.pdf",
-    email: "mailto:hello@example.com",
-    github: "https://github.com/yourname",
-    linkedin: "https://www.linkedin.com/in/yourname",
-    x: "https://x.com/yourname",
+    /* Empty values hide the matching button / icon instead of shipping a dead link.
+       resume: file name inside public/. email: value must start with mailto:. */
+    resume: "",
+    email: "",
+    github: "",
+    linkedin: "",
+    x: "",
     socialLabel: "Social links",
     githubLabel: "GitHub",
     linkedinLabel: "LinkedIn",
@@ -52,7 +53,7 @@ window.SITE_CONTENT.en = {
 
   hero: {
     status: "Open to full-time and remote roles",
-    name: "Zhang Wei",
+    name: "Zhang Zihang",
     role: "Full-Stack Engineer",
     lead:
       "Five years building web products, mostly front-end architecture and developer tooling. I like breaking complex systems into pieces I can explain clearly, and writing docs and automation to kill repetitive work.",
@@ -62,7 +63,7 @@ window.SITE_CONTENT.en = {
 
   terminal: {
     label: "Terminal-style introduction",
-    whoami: "zhang-wei · full-stack engineer",
+    whoami: "zhang-zihang · full-stack engineer",
     focus: "web platform · dev tooling · performance",
     now: "open source / side projects / writing",
   },
@@ -72,9 +73,9 @@ window.SITE_CONTENT.en = {
     title: "About me",
     lead: "Three paragraphs on who I am, what I build, and what I care about.",
     paragraphs: [
-      "I'm Zhang Wei, a full-stack engineer based in Hangzhou. My day job is designing and maintaining web platforms for internal teams. I've worked across the whole path — API design, front-end architecture, and the deployment pipeline — which is why questions like \"why did this get slow\" and \"why is this hard to change\" interest me so much.",
+      "I'm Zhang Zihang, a full-stack engineer based in Hangzhou. My day job is designing and maintaining web platforms for internal teams. I've worked across the whole path — API design, front-end architecture, and the deployment pipeline — which is why questions like \"why did this get slow\" and \"why is this hard to change\" interest me so much.",
       "For the past two years I've focused on two things: automating repetitive engineering workflow so nobody has to run release checks by hand, and adding observability so production issues can be traced to a specific module in minutes instead of guessed at.",
-      "Outside work I write open-source tools and keep a notes repository documenting problems I ran into. If you're working on something similar, or want to talk about engineering effectiveness, feel free to email me.",
+      "Outside work I write open-source tools and keep a notes repository documenting problems I ran into. If you're working on something similar, or want to talk about engineering effectiveness, feel free to get in touch.",
     ],
     facts: [
       { label: "Location", value: "Hangzhou, China" },
@@ -118,43 +119,43 @@ window.SITE_CONTENT.en = {
         title: "Flowboard",
         desc: "A real-time collaborative kanban tool. CRDTs resolve offline edit conflicts, so dragging cards on a flaky connection never loses an operation.",
         stack: ["React", "TypeScript", "WebSocket", "PostgreSQL"],
-        demo: "https://example.com",
-        code: "https://github.com/yourname",
+        demo: "",
+        code: "",
       },
       {
         title: "Logpipe",
         desc: "A lightweight log collection and search service that handles 200k events per second on a single node, with a query language and alert rule editor.",
         stack: ["Go", "ClickHouse", "Docker"],
-        demo: "https://example.com",
-        code: "https://github.com/yourname",
+        demo: "",
+        code: "",
       },
       {
         title: "Design Tokens Kit",
         desc: "A CLI that syncs design tokens to CSS, Tailwind, and design files, so design and code stop maintaining two copies of the same numbers.",
         stack: ["Node.js", "TypeScript", "CLI"],
-        demo: "https://example.com",
-        code: "https://github.com/yourname",
+        demo: "",
+        code: "",
       },
       {
         title: "EasyCron",
         desc: "A visual editor for cron expressions with next-run previews and templates for common schedules. Runs entirely in the browser, works offline.",
         stack: ["Vue", "Vite", "PWA"],
-        demo: "https://example.com",
-        code: "https://github.com/yourname",
+        demo: "",
+        code: "",
       },
       {
         title: "Perf Lab",
         desc: "A small SDK plus dashboard that collects real user metrics and reports them, so teams can find which page is actually hurting the experience.",
         stack: ["TypeScript", "Web Vitals", "Grafana"],
-        demo: "https://example.com",
-        code: "https://github.com/yourname",
+        demo: "",
+        code: "",
       },
       {
         title: "Note Vault",
         desc: "A local-first Markdown notes app with full-text search and backlinks. Everything stays in the browser; nothing is uploaded.",
         stack: ["React", "IndexedDB", "Web Worker"],
-        demo: "https://example.com",
-        code: "https://github.com/yourname",
+        demo: "",
+        code: "",
       },
     ],
   },
@@ -199,12 +200,12 @@ window.SITE_CONTENT.en = {
     eyebrow: "05 / Contact",
     title: "Let's talk",
     lead:
-      "Whether it's a job opportunity, a technical collaboration, or a specific engineering problem you want to discuss, email is the best way to reach me. I usually reply within two business days.",
-    email: "hello@example.com",
+      "Whether it's a job opportunity, a technical collaboration, or a specific engineering problem you want to discuss, feel free to reach out.",
+    email: "Email me",
   },
 
   footer: {
-    name: "Zhang Wei",
+    name: "Zhang Zihang",
     note: "built with HTML, CSS, and vanilla JavaScript",
     top: "Back to top ↑",
   },

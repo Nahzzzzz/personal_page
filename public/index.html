@@ -5,23 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#0a0b0f" />
 
-  <title data-i18n="meta.title">张伟 · 全栈工程师</title>
+  <title data-i18n="meta.title">张子航 · 全栈工程师</title>
   <meta
     name="description"
     data-i18n-content="meta.description"
-    content="张伟的个人主页：全栈工程师，专注 Web 平台与开发者工具。项目作品、技术经历与联系方式。"
+    content="张子航的个人主页：全栈工程师，专注 Web 平台与开发者工具。项目作品、技术经历与联系方式。"
   />
 
   <meta property="og:type" content="website" />
-  <meta property="og:title" data-i18n-content="meta.title" content="张伟 · 全栈工程师" />
+  <meta property="og:title" data-i18n-content="meta.title" content="张子航 · 全栈工程师" />
   <meta
     property="og:description"
     data-i18n-content="meta.description"
-    content="张伟的个人主页：全栈工程师，专注 Web 平台与开发者工具。项目作品、技术经历与联系方式。"
+    content="张子航的个人主页：全栈工程师，专注 Web 平台与开发者工具。项目作品、技术经历与联系方式。"
   />
   <meta property="og:locale" content="zh_CN" />
   <!-- og:url 的值在页面加载后由 assets/js/content.js 用 site.url 补上 -->
-  <meta property="og:url" content="https://example.com" />
+  <meta property="og:url" content="https://personal-page-2xn.pages.dev" />
 
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="assets/css/tokens.css" />
@@ -31,19 +31,14 @@
   <!-- 加 .js 类，只有脚本可用时才启用入场动画，避免脚本被禁用后内容不可见 -->
   <script src="assets/js/boot.js"></script>
 
-  <!-- 结构化数据：这里是不依赖 JS 的兜底，页面加载后会用后台内容刷新 -->
+  <!-- 结构化数据：这里是不依赖 JS 的兜底，页面加载后会用当前语言的内容刷新 -->
   <script type="application/ld+json" id="structured-data">
     {
       "@context": "https://schema.org",
       "@type": "Person",
-      "name": "张伟",
+      "name": "张子航",
       "jobTitle": "全栈工程师",
-      "email": "mailto:hello@example.com",
-      "url": "https://example.com",
-      "sameAs": [
-        "https://github.com/yourname",
-        "https://www.linkedin.com/in/yourname"
-      ]
+      "url": "https://personal-page-2xn.pages.dev"
     }
   </script>
 </head>
@@ -53,8 +48,8 @@
   <header class="nav" id="nav">
     <div class="nav__inner container">
       <a class="nav__brand" href="#top">
-        <span class="nav__mark" aria-hidden="true">ZW</span>
-        <span class="nav__brand-text" data-i18n="nav.brand">张伟</span>
+        <span class="nav__mark" aria-hidden="true">ZZ</span>
+        <span class="nav__brand-text" data-i18n="nav.brand">张子航</span>
       </a>
 
       <nav class="nav__menu" id="nav-menu" data-i18n-aria-label="nav.label" aria-label="主导航">
@@ -109,7 +104,7 @@
           </p>
 
           <h1 class="hero__title" id="hero-title">
-            <span class="hero__name" data-i18n="hero.name">张伟</span>
+            <span class="hero__name" data-i18n="hero.name">张子航</span>
             <span class="hero__role" data-i18n="hero.role">全栈工程师</span>
           </h1>
 
@@ -132,7 +127,7 @@
               </svg>
             </a>
 
-            <a class="btn btn--ghost" href="resume-zh.pdf" download data-i18n-href="links.resume">
+            <a class="btn btn--ghost" href="resume-zh.pdf" download data-i18n-href="links.resume" hidden>
               <svg class="icon icon--14" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                 <path
                   fill="none"
@@ -147,11 +142,10 @@
             </a>
           </div>
 
-          <ul class="social" data-i18n-aria-label="links.socialLabel" aria-label="社交链接">
-            <li>
+          <ul class="social" data-i18n-aria-label="links.socialLabel" aria-label="社交链接" hidden>
+            <li hidden>
               <a
                 class="social__link"
-                href="https://github.com/yourname"
                 data-i18n-href="links.github"
                 data-i18n-aria-label="links.githubLabel"
                 data-i18n-title="links.githubLabel"
@@ -166,10 +160,9 @@
                 </svg>
               </a>
             </li>
-            <li>
+            <li hidden>
               <a
                 class="social__link"
-                href="https://www.linkedin.com/in/yourname"
                 data-i18n-href="links.linkedin"
                 data-i18n-aria-label="links.linkedinLabel"
                 data-i18n-title="links.linkedinLabel"
@@ -184,10 +177,9 @@
                 </svg>
               </a>
             </li>
-            <li>
+            <li hidden>
               <a
                 class="social__link"
-                href="https://x.com/yourname"
                 data-i18n-href="links.x"
                 data-i18n-aria-label="links.xLabel"
                 data-i18n-title="links.xLabel"
@@ -202,10 +194,9 @@
                 </svg>
               </a>
             </li>
-            <li>
+            <li hidden>
               <a
                 class="social__link"
-                href="mailto:hello@example.com"
                 data-i18n-href="links.email"
                 data-i18n-aria-label="links.emailLabel"
                 data-i18n-title="links.emailLabel"
@@ -235,7 +226,7 @@
                 <span class="terminal__prompt" aria-hidden="true">$</span>
                 <span class="terminal__cmd">whoami</span>
               </p>
-              <p class="terminal__line terminal__out" data-i18n="terminal.whoami">zhang-wei · 全栈工程师</p>
+              <p class="terminal__line terminal__out" data-i18n="terminal.whoami">zhang-zihang · 全栈工程师</p>
 
               <p class="terminal__line">
                 <span class="terminal__prompt" aria-hidden="true">$</span>
@@ -325,25 +316,25 @@
             不管是工作机会、技术合作，还是想讨论某个具体的工程问题，都欢迎直接发邮件给我。我一般在两个工作日内回复。
           </p>
 
-          <a class="btn btn--primary btn--lg" href="mailto:hello@example.com" data-i18n-href="links.email">
+          <a class="btn btn--primary btn--lg" data-i18n-href="links.email" hidden>
             <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
               <path
                 fill="currentColor"
                 d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5-8-5V6l8 5 8-5v2Z"
               />
             </svg>
-            <span data-i18n="contact.email">hello@example.com</span>
+            <span data-i18n="contact.email">发邮件给我</span>
           </a>
 
           <ul
             class="social social--center"
             data-i18n-aria-label="links.socialLabel"
             aria-label="社交链接"
+            hidden
           >
-            <li>
+            <li hidden>
               <a
                 class="social__link"
-                href="https://github.com/yourname"
                 data-i18n-href="links.github"
                 data-i18n-aria-label="links.githubLabel"
                 data-i18n-title="links.githubLabel"
@@ -358,10 +349,9 @@
                 </svg>
               </a>
             </li>
-            <li>
+            <li hidden>
               <a
                 class="social__link"
-                href="https://www.linkedin.com/in/yourname"
                 data-i18n-href="links.linkedin"
                 data-i18n-aria-label="links.linkedinLabel"
                 data-i18n-title="links.linkedinLabel"
@@ -376,10 +366,9 @@
                 </svg>
               </a>
             </li>
-            <li>
+            <li hidden>
               <a
                 class="social__link"
-                href="https://x.com/yourname"
                 data-i18n-href="links.x"
                 data-i18n-aria-label="links.xLabel"
                 data-i18n-title="links.xLabel"
@@ -394,10 +383,9 @@
                 </svg>
               </a>
             </li>
-            <li>
+            <li hidden>
               <a
                 class="social__link"
-                href="mailto:hello@example.com"
                 data-i18n-href="links.email"
                 data-i18n-aria-label="links.emailLabel"
                 data-i18n-title="links.emailLabel"
@@ -420,7 +408,7 @@
     <div class="container footer__inner">
       <p class="footer__meta">
         © <span id="year">2026</span>
-        <span data-i18n="footer.name">张伟</span>
+        <span data-i18n="footer.name">张子航</span>
         <span aria-hidden="true">·</span>
         <span data-i18n="footer.note">用 HTML、CSS 和原生 JavaScript 构建</span>
       </p>

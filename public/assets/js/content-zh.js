@@ -1,12 +1,9 @@
 /* ============================================================
    站点内容 · 简体中文
    ============================================================
-   这个文件有两个作用：
-   1. 打开页面时的首屏内容（不用等接口返回）
-   2. 接口拿不到数据时的兜底内容（比如用 file:// 直接打开，或者 D1 没配好）
-
-   后台 /admin 保存的内容存在 D1 里，会在页面加载后覆盖这里的对应字段。
-   结构必须与 content-en.js 完全一致，否则切换语言会缺字段。
+   这是站点全部文案的唯一来源：改这里就是改页面，改完重新部署一次即可。
+   结构必须与 content-en.js 完全一致 —— 两边不同步时，切到缺字段的那份会
+   留空，浏览器控制台还会打印「缺少文案」。
 
    字段含义见根目录 AGENTS.md 的「内容字段速查」。
    ============================================================ */
@@ -15,13 +12,13 @@ window.SITE_CONTENT = window.SITE_CONTENT || {};
 
 window.SITE_CONTENT.zh = {
   meta: {
-    title: "张伟 · 全栈工程师",
+    title: "张子航 · 全栈工程师",
     description:
-      "张伟的个人主页：全栈工程师，专注 Web 平台与开发者工具。项目作品、技术经历与联系方式。",
+      "张子航的个人主页：全栈工程师，专注 Web 平台与开发者工具。项目作品、技术经历与联系方式。",
   },
 
   site: {
-    url: "https://example.com",
+    url: "https://personal-page-2xn.pages.dev",
   },
 
   a11y: {
@@ -29,7 +26,7 @@ window.SITE_CONTENT.zh = {
   },
 
   nav: {
-    brand: "张伟",
+    brand: "张子航",
     label: "主导航",
     about: "关于",
     skills: "技能",
@@ -41,11 +38,13 @@ window.SITE_CONTENT.zh = {
   },
 
   links: {
-    resume: "resume-zh.pdf",
-    email: "mailto:hello@example.com",
-    github: "https://github.com/yourname",
-    linkedin: "https://www.linkedin.com/in/yourname",
-    x: "https://x.com/yourname",
+    /* 这几个链接留空时，页面上对应的按钮 / 图标会自动隐藏，不会留下死链。
+       填了就显示：resume 填 public/ 里的文件名，email 写 mailto: 开头。 */
+    resume: "",
+    email: "",
+    github: "",
+    linkedin: "",
+    x: "",
     socialLabel: "社交链接",
     githubLabel: "GitHub",
     linkedinLabel: "LinkedIn",
@@ -55,7 +54,7 @@ window.SITE_CONTENT.zh = {
 
   hero: {
     status: "开放全职与远程机会",
-    name: "张伟",
+    name: "张子航",
     role: "全栈工程师",
     lead:
       "五年 Web 开发经验，主要做前端架构与开发者工具。喜欢把复杂的系统拆成能解释清楚的小块，也喜欢写文档和自动化脚本来减少重复劳动。",
@@ -65,7 +64,7 @@ window.SITE_CONTENT.zh = {
 
   terminal: {
     label: "终端样式的自我介绍",
-    whoami: "zhang-wei · 全栈工程师",
+    whoami: "zhang-zihang · 全栈工程师",
     focus: "Web 平台 · 开发者工具 · 性能优化",
     now: "开源项目 / 副业产品 / 技术写作",
   },
@@ -75,9 +74,9 @@ window.SITE_CONTENT.zh = {
     title: "关于我",
     lead: "三句话说明我是谁、在做什么、关心什么问题。",
     paragraphs: [
-      "我是张伟，一名全栈工程师，现在在杭州。日常工作是设计并维护面向内部团队的 Web 平台：从接口设计、前端架构一直到部署流水线，整条链路都参与过，也因此对「系统为什么变慢、为什么难改」这类问题特别感兴趣。",
+      "我是张子航，一名全栈工程师，现在在杭州。日常工作是设计并维护面向内部团队的 Web 平台：从接口设计、前端架构一直到部署流水线，整条链路都参与过，也因此对「系统为什么变慢、为什么难改」这类问题特别感兴趣。",
       "最近两年我把精力放在两件事上：一是把重复的工程流程自动化，让团队不用手工做发布检查；二是补上可观测性，让线上问题能在几分钟内定位到具体模块，而不是靠猜。",
-      "工作之外会写一些开源工具，也维护一个记录踩坑过程的技术笔记仓库。如果你在做类似的事情，或者想聊聊工程效率的话题，欢迎直接发邮件给我。",
+      "工作之外会写一些开源工具，也维护一个记录踩坑过程的技术笔记仓库。如果你在做类似的事情，或者想聊聊工程效率的话题，欢迎直接联系我。",
     ],
     facts: [
       { label: "所在地", value: "杭州，中国" },
@@ -121,43 +120,43 @@ window.SITE_CONTENT.zh = {
         title: "Flowboard",
         desc: "支持多人实时协作的看板工具。用 CRDT 处理离线编辑冲突，弱网环境下拖动卡片也不会丢操作。",
         stack: ["React", "TypeScript", "WebSocket", "PostgreSQL"],
-        demo: "https://example.com",
-        code: "https://github.com/yourname",
+        demo: "",
+        code: "",
       },
       {
         title: "Logpipe",
         desc: "轻量日志采集与检索服务，单机每秒能处理二十万条日志，附带查询语言和告警规则配置界面。",
         stack: ["Go", "ClickHouse", "Docker"],
-        demo: "https://example.com",
-        code: "https://github.com/yourname",
+        demo: "",
+        code: "",
       },
       {
         title: "Design Tokens Kit",
         desc: "把设计变量自动同步到 CSS、Tailwind 和设计稿的命令行工具，让设计与代码不再各维护一份数值。",
         stack: ["Node.js", "TypeScript", "CLI"],
-        demo: "https://example.com",
-        code: "https://github.com/yourname",
+        demo: "",
+        code: "",
       },
       {
         title: "EasyCron",
         desc: "可视化编辑 cron 表达式的网页工具，带下次执行时间预览和常用表达式模板，纯前端可离线使用。",
         stack: ["Vue", "Vite", "PWA"],
-        demo: "https://example.com",
-        code: "https://github.com/yourname",
+        demo: "",
+        code: "",
       },
       {
         title: "Perf Lab",
         desc: "收集真实用户性能指标并生成报告的小型 SDK 与看板，帮团队定位到底哪个页面在拖慢体验。",
         stack: ["TypeScript", "Web Vitals", "Grafana"],
-        demo: "https://example.com",
-        code: "https://github.com/yourname",
+        demo: "",
+        code: "",
       },
       {
         title: "Note Vault",
         desc: "本地优先的 Markdown 笔记应用，支持全文检索和双向链接，数据完全存在浏览器里，不上传任何内容。",
         stack: ["React", "IndexedDB", "Web Worker"],
-        demo: "https://example.com",
-        code: "https://github.com/yourname",
+        demo: "",
+        code: "",
       },
     ],
   },
@@ -202,12 +201,12 @@ window.SITE_CONTENT.zh = {
     eyebrow: "05 / 联系",
     title: "聊聊？",
     lead:
-      "不管是工作机会、技术合作，还是想讨论某个具体的工程问题，都欢迎直接发邮件给我。我一般在两个工作日内回复。",
-    email: "hello@example.com",
+      "不管是工作机会、技术合作，还是想讨论某个具体的工程问题，都欢迎直接联系我。",
+    email: "发邮件给我",
   },
 
   footer: {
-    name: "张伟",
+    name: "张子航",
     note: "用 HTML、CSS 和原生 JavaScript 构建",
     top: "回到顶部 ↑",
   },

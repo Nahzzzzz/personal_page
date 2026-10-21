@@ -4,8 +4,8 @@
    挂载点写在 HTML 上，用 data-list="projects.items" 标记，
    值就是内容里的点号路径。渲染器按这个键注册。
 
-   内容来自后台，所以一律用 createElement + textContent 构建，
-   不用 innerHTML —— 避免后台里写进 <script> 之类内容时被执行。
+   内容来自 content-*.js，一律用 createElement + textContent 构建，
+   不用 innerHTML —— 万一文案里出现 <script> 这类字符，也不会被当成 HTML 执行。
    ============================================================ */
 
 window.SiteRender = (function () {

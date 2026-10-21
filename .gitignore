@@ -1,13 +1,6 @@
-# Cloudflare 本地状态（含本地 D1 数据）
-.wrangler/
-
-# 本地环境变量（含密码），绝对不要提交
-.dev.vars
-
-# 本地回归脚本：要连着 npm run dev 起的服务才能跑，只在自己机器上用
-.verify.mjs
-.e2e.mjs
-
 node_modules/
 .DS_Store
 *.log
+
+# wrangler 的本地状态与缓存
+.wrangler/

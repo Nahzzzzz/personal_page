@@ -1,14 +1,14 @@
 /* ============================================================
    内容加载与本地化
    ============================================================
-   优先级：后台内容（GET /api/content）> content-zh.js / content-en.js 内置默认值
+   文案的唯一来源是 content-zh.js 与 content-en.js。这个文件负责三件事：
+     1. 选语言（记住上一次的选择，没有就按浏览器语言猜）
+     2. 把内容按 HTML 上的标记刷到页面上
+     3. 切换语言时重刷一遍
 
-   首屏先用内置默认值同步画出来，再去请求后台内容，取到后整体重画一次。
-   所以后台挂了、接口没通、或者直接用 file:// 打开，页面也完整可见。
-
-   页面上的文字全部靠标记识别，不需要在 JS 里写死：
-     data-i18n="hero.name"                  → 元素文本
-     data-i18n-href="links.email"           → 映射到 href 属性
+   页面上的文字全部靠标记识别，不用在 JS 里写死：
+     data-i18n="hero.name"                   → 元素文本
+     data-i18n-href="links.email"            → 映射到 href 属性
      data-i18n-aria-label="links.emailLabel" → 属性名就是前缀去掉后的部分
    ============================================================ */
 
@@ -21,14 +21,10 @@ window.SiteContent = (function () {
   var DEFAULT_LOCALE = "zh";
 
   var LOCALE_KEY = "site:locale";
-  var CACHE_KEY = "site:content:v1";
-  var API_URL = "/api/content";
 
   var HTML_LANG = { zh: "zh-CN", en: "en" };
   var OG_LOCALE = { zh: "zh_CN", en: "en_US" };
 
-  /* 后台存的内容，按语言分开，还没取到时是 null */
-  var remote = null;
   var locale = pickInitialLocale();
   var warned = {};
 
@@ -67,17 +63,8 @@ window.SiteContent = (function () {
 
   /* ---------------- 取值 ---------------- */
 
-  function defaultsFor(target) {
-    return (window.SITE_CONTENT && window.SITE_CONTENT[target]) || {};
-  }
-
-  function localOverridesFor(target) {
-    return (remote && remote[target]) || undefined;
-  }
-
-  /* 内置默认值打底，后台内容盖在上面 */
   function contentFor(target) {
-    return util.deepMerge(defaultsFor(target), localOverridesFor(target));
+    return (window.SITE_CONTENT && window.SITE_CONTENT[target]) || {};
   }
 
   /* ---------------- 往页面上刷 ---------------- */
@@ -131,19 +118,38 @@ window.SiteContent = (function () {
           continue;
         }
 
-        nodes[i].setAttribute(attribute, String(value));
+        var text = String(value);
+
+        /* href / src 留空时不写进去：否则 <a href=""> 会指向当前页，
+           元素是否显示由 applyOptionalLinks 决定 */
+        if (!text.trim() && (attribute === "href" || attribute === "src")) continue;
+
+        nodes[i].setAttribute(attribute, text);
       }
     }
   }
 
-  /* 「下载简历」指向 public/ 里的静态文件，后台只能改文件名、传不了文件。
-     没填文件名、或者填了但文件没放进来时，与其让访客点到 404，不如把按钮收起来。 */
-  function applyResumeLink(content) {
-    var link = document.querySelector('[data-i18n-href="links.resume"]');
-    if (!link) return;
+  /* 可选链接：links.resume / links.email / links.github / links.linkedin / links.x。
+     留空时把整个入口隐藏（社交图标连它的 <li> 一起收起来），避免出现 404
+     或者指向不存在邮箱的按钮；填上值就自动显示。 */
+  function applyOptionalLinks(content) {
+    var nodes = document.querySelectorAll('[data-i18n-href^="links."]');
 
-    var value = util.getPath(content, "links.resume");
-    link.hidden = !value || !String(value).trim();
+    for (var i = 0; i < nodes.length; i += 1) {
+      var node = nodes[i];
+      var value = util.getPath(content, node.getAttribute("data-i18n-href"));
+      var filled = value != null && String(value).trim() !== "";
+      var item = node.closest ? node.closest("li") : null;
+
+      (item || node).hidden = !filled;
+    }
+
+    /* 整组图标都没填时，把列表本身也隐藏，否则会留下一截多余间距 */
+    var lists = document.querySelectorAll(".social");
+
+    for (var j = 0; j < lists.length; j += 1) {
+      lists[j].hidden = !lists[j].querySelector("li:not([hidden])");
+    }
   }
 
   function applyDocumentMeta() {
@@ -163,7 +169,7 @@ window.SiteContent = (function () {
     applyStructuredData(content);
   }
 
-  /* 结构化数据本来是写在 HTML 里的兜底，这里用当前语言的内容覆盖掉 */
+  /* 结构化数据本来写在 HTML 里当兜底，这里用当前语言的内容覆盖掉 */
   function applyStructuredData(content) {
     var node = document.getElementById("structured-data");
     if (!node) return;
@@ -196,15 +202,11 @@ window.SiteContent = (function () {
 
     applyTextNodes(content);
     applyAttributes(content);
-    applyResumeLink(content);
+    applyOptionalLinks(content);
     applyDocumentMeta();
 
     /* 列表类内容交给 render.js，它按 data-list 的值挑渲染器 */
     if (window.SiteRender) window.SiteRender.renderAll(content);
-
-    document.dispatchEvent(
-      new CustomEvent("site:content", { detail: { locale: locale, content: content } })
-    );
 
     return content;
   }
@@ -230,70 +232,11 @@ window.SiteContent = (function () {
     });
   }
 
-  /* ---------------- 取后台内容 ---------------- */
-
-  function useCached() {
-    var raw = readStorage(CACHE_KEY);
-    if (!raw) return false;
-
-    try {
-      var parsed = JSON.parse(raw);
-      if (!parsed || typeof parsed !== "object") return false;
-      remote = parsed;
-      apply();
-      return true;
-    } catch (error) {
-      return false;
-    }
-  }
-
-  function normalize(payload) {
-    if (!payload || typeof payload !== "object") return null;
-
-    var source = payload.content || payload;
-    var out = {};
-
-    LOCALES.forEach(function (name) {
-      if (util.isPlainObject(source[name])) out[name] = source[name];
-    });
-
-    return Object.keys(out).length ? out : null;
-  }
-
-  function loadRemote() {
-    /* file:// 下没有同源接口，直接用缓存或默认值 */
-    if (location.protocol === "file:") {
-      useCached();
-      return;
-    }
-
-    fetch(API_URL, { headers: { Accept: "application/json" }, credentials: "same-origin" })
-      .then(function (response) {
-        if (!response.ok) throw new Error("HTTP " + response.status);
-        return response.json();
-      })
-      .then(function (payload) {
-        var normalized = normalize(payload);
-        if (!normalized) return;
-
-        remote = normalized;
-        writeStorage(CACHE_KEY, JSON.stringify(remote));
-        apply();
-      })
-      .catch(function (error) {
-        /* 接口还没部署、离线、或者 Workers 额度用尽都会走到这里。
-           用上次缓存顶上，再不行就保持内置默认值，页面依然完整。 */
-        console.info("[content] 未能取到后台内容，使用内置内容：" + error.message);
-        useCached();
-      });
-  }
-
   /* ---------------- 启动 ---------------- */
 
   function start() {
-    apply(); // 先用内置默认值画首屏，不阻塞渲染
+    apply();
     bindToggle();
-    loadRemote();
   }
 
   return {
@@ -305,7 +248,6 @@ window.SiteContent = (function () {
       return locale;
     },
     locales: LOCALES.slice(),
-    normalize: normalize,
   };
 })();
 
