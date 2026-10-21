@@ -14,6 +14,7 @@ public/                       唯一会被上传到 Cloudflare 的目录
   index.html                  页面骨架：文本用 data-i18n 标记，列表用 data-list 挂载
   favicon.svg                 图标
   robots.txt                  允许收录
+  404.html                    路径不存在时显示的页面
   _headers                    Cloudflare Pages 的自定义响应头
   assets/css/
     tokens.css                设计变量：配色、字号、间距、圆角、断点

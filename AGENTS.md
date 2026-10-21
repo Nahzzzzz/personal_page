@@ -39,6 +39,7 @@ public/                     唯一会被上传到 Cloudflare 的目录
   index.html                骨架：data-i18n 标记、data-list 挂载点、ld+json 兜底
   _headers                  静态资源的响应头（安全头）
   robots.txt                允许收录
+  404.html                  找不到路径时返回的页面（Cloudflare Pages 据此返回 404 状态）
   favicon.svg               图标
   assets/css/
     tokens.css              设计变量（配色、字号、间距、圆角、断点宽度）
